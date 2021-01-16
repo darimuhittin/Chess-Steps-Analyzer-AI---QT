@@ -14,3 +14,6 @@ Yalnızca :
 taşları kullanılmaktadır. :unamused:
 #### Yardimci olmasi amaci ile, minimax algoritmasi 
 #### icin yararlandığım videoya [BURADAN](https://www.youtube.com/watch?v=l-hh51ncgDI) ulaşabilirsiniz. :yum:
+
+En azindan bir adet release olusturmak istiyordum lakin
+hunharca NEW kullanışımdan kaynaklı programda memory leak var.
