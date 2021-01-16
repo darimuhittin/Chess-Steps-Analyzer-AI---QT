@@ -11,7 +11,13 @@ AnalyzeView::AnalyzeView(QWidget *parent):QWidget(parent)
 
 }
 
-void AnalyzeView::setNodes(QList<AnalyzerNode> nodes)
+// YENI DATA BU FONKSIYON ILE HAZIRLANIR
+// AMACIM TEK SEFERDE CIZIM ICIN GEREKLI VERILERI BULUP
+// KAYDEDEREK, PAINT EVENTI ICERISINE YUKLENMEMEK.
+//
+// ICERISI CORBA GIBI LAKIN SADECE CIZIM ICIN GEREKLI
+// KOORDINATLARI VS HESAPLAMAKTA.
+void AnalyzeView::setupNodes(QList<AnalyzerNode> nodes)
 {
     m_nodes = nodes;
     resize(m_board_size * m_nodes.length()+2  + 1200,(m_board_size+dy) * 3 + 300);

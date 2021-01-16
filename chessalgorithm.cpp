@@ -35,6 +35,8 @@ bool ChessAlgorithm::move(const QPoint &from, const QPoint &to)
 
 void ChessAlgorithm::setupBoard()
 {
+    // DEFAULT BOARD SETUP
+    // PARAMETERS : ROW - COL
     setBoard(new ChessBoard(8,8,this));
 }
 

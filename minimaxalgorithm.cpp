@@ -1,5 +1,5 @@
 #include "boardnode.h"
-#include "dersalgorithm.h"
+#include "minimaxalgorithm.h"
 #include <QtMath>
 #include <QList>
 #include <QPoint>
@@ -7,15 +7,14 @@
 #include <QString>
 
 #define DEBUG 0
-#define ANALYZE 0
-#define MINIMAX_DEPTH 7
+#define ANALYZE 1
+#define MINIMAX_DEPTH 3
+// ANALIZ ICIN YALNIZCA 3 DERINLIK GORUNTULENMEKTE
+// PROJEYI YETISTIREBILMEK ADINA KALITELI KOD YAZMADIM ANALIZ ICIN
+// ISTEYEN ANALYZERNODE'U KURCALAYIP EKLEYEBILIR
 
-DersAlgorithm::DersAlgorithm(QObject *parent):ChessAlgorithm(parent)
-{
 
-}
-
-void DersAlgorithm::newGame()
+void MinimaxAlgorithm::newGame()
 {
     setupBoard();
     board()->setFen("r1pkp1/6/6/6/6/2PKPR w");
@@ -25,9 +24,10 @@ void DersAlgorithm::newGame()
 
 }
 
-bool DersAlgorithm::move(int colFrom, int rankFrom, int colTo, int rankTo)
+bool MinimaxAlgorithm::move(int colFrom, int rankFrom, int colTo, int rankTo)
 {
     bool isValid = false;
+
     if(currentPlayer() == NoPlayer || currentPlayer() == Player2) return false;
 
     if(currentPlayer() == Player1){
@@ -74,7 +74,7 @@ bool DersAlgorithm::move(int colFrom, int rankFrom, int colTo, int rankTo)
 #endif
 
     emit calculatingMinimax(true);
-    Ret bestRet = minimax(*board(),MINIMAX_DEPTH,INT32_MIN,INT32_MAX,Player2,White);
+    MinimaxReturnType bestRet = minimax(*board(),MINIMAX_DEPTH,INT32_MIN,INT32_MAX,Player2,White);
     emit calculatingMinimax(false);
 
     Move best = bestRet.move;
@@ -91,6 +91,8 @@ bool DersAlgorithm::move(int colFrom, int rankFrom, int colTo, int rankTo)
 
     emit valueChanged(evaluateBoardValue(*board(),White));
 #if ANALYZE == 1
+    // ANALIZ PENCERESINE DATA YOLLANIR
+    // BU SINYALE ANALIZ PENCERESININ SLOTU BAGLI
     emit analyzerValueChanged(nodes);
     nodes.clear();
 #endif
@@ -99,7 +101,7 @@ bool DersAlgorithm::move(int colFrom, int rankFrom, int colTo, int rankTo)
     //setCurrentPlayer(currentPlayer() == Player1 ? Player2 : Player1);
 }
 
-DersAlgorithm::Ret DersAlgorithm::minimax(ChessBoard board, int depth,int alpha,int beta,
+MinimaxAlgorithm::MinimaxReturnType MinimaxAlgorithm::minimax(ChessBoard board, int depth,int alpha,int beta,
                                           ChessAlgorithm::Player maximizingPlayer,
                                           ChessAlgorithm::Color maximizingColor)
 {
@@ -182,7 +184,7 @@ DersAlgorithm::Ret DersAlgorithm::minimax(ChessBoard board, int depth,int alpha,
     }
 }
 
-int DersAlgorithm::evaluateBoardValue(ChessBoard board,Color maximizingColor)
+int MinimaxAlgorithm::evaluateBoardValue(ChessBoard board,Color maximizingColor)
 {
     int value = 0;
     for (int i=1;i<=6;i++) {
@@ -214,9 +216,9 @@ int DersAlgorithm::evaluateBoardValue(ChessBoard board,Color maximizingColor)
         value *= -1;
     return value;
 }
-
-// IPTAL
-QList<QPoint> DersAlgorithm::getAttackPointsPlayer(ChessBoard* board,char piece,int rank,int col)
+/*
+// IPTAL EDILDI , BELKI GERI DONMEK ISTERIM DIYE BIRAKIYORUM
+QList<QPoint> MinimaxAlgorithm::getAttackPointsPlayer(ChessBoard* board,char piece,int rank,int col)
 {
     QList<QPoint> attackPoints;
     switch (piece) {
@@ -287,8 +289,9 @@ QList<QPoint> DersAlgorithm::getAttackPointsPlayer(ChessBoard* board,char piece,
     }
     return attackPoints;
 }
-// IPTAL
-QList<QPoint> DersAlgorithm::getAttackPointsComputer(ChessBoard* board,char piece, int rank, int col)
+
+// IPTAL EDILDI , BELKI GERI DONMEK ISTERIM DIYE BIRAKIYORUM
+QList<QPoint> MinimaxAlgorithm::getAttackPointsComputer(ChessBoard* board,char piece, int rank, int col)
 {
     QList<QPoint> attackPoints;
     switch (piece) {
@@ -359,8 +362,10 @@ QList<QPoint> DersAlgorithm::getAttackPointsComputer(ChessBoard* board,char piec
     }
     return attackPoints;
 }
-
-QList<Move> DersAlgorithm::getBoardMoves(const ChessBoard &board, Player player)
+*/
+// GET BOARD MOVES FOR A SPECIFIC BOARD
+// RETURNS POSSIBLE MOVES FOR GIVEN PLAYER ON GIVEN BOARD
+QList<Move> MinimaxAlgorithm::getBoardMoves(const ChessBoard &board, Player player)
 {
     QList<Move> moves;
     for(int col=1;col<=6;col++){
@@ -556,10 +561,14 @@ QList<Move> DersAlgorithm::getBoardMoves(const ChessBoard &board, Player player)
     return moves;
 }
 
-void DersAlgorithm::setupBoard()
+void MinimaxAlgorithm::setupBoard()
 {
     setBoard(new ChessBoard(6,6,this));
 }
+
+// OLD EVALUATE BOARD VALUE HERE
+// JUST DELETE IT IF U WANT...
+
 //int DersAlgorithm::evaluateBoardValue(ChessBoard* board)
 //{
 //    int value = 0;

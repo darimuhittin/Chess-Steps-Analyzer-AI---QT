@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     m_view = new ChessView;
-    m_algorithm = new DersAlgorithm(this);
+    m_algorithm = new MinimaxAlgorithm(this);
     wndAnalyze = new AnalyzeWindow;
 
     connect(m_algorithm,SIGNAL(calculatingMinimax(bool)),wndAnalyze,SLOT(showWaitText(bool)));

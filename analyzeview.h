@@ -17,7 +17,14 @@ public:
         QString moveString;
     };
     explicit AnalyzeView(QWidget *parent = nullptr);
-    void setNodes(QList<AnalyzerNode> nodes);
+
+    // YENI DATA BU FONKSIYON ILE HAZIRLANIR
+    // AMACIM TEK SEFERDE CIZIM ICIN GEREKLI VERILERI BULUP
+    // KAYDEDEREK, PAINT EVENTI ICERISINE YUKLENMEMEK.
+    //
+    // ICERISI CORBA GIBI LAKIN SADECE CIZIM ICIN GEREKLI
+    // KOORDINATLARI VS HESAPLAMAKTA.
+    void setupNodes(QList<AnalyzerNode> nodes);
 signals:
 
 private:

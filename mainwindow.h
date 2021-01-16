@@ -3,7 +3,7 @@
 
 #include "analyzewindow.h"
 #include "chessview.h"
-#include "dersalgorithm.h"
+#include "minimaxalgorithm.h"
 
 #include <QMainWindow>
 QT_BEGIN_NAMESPACE
@@ -21,7 +21,7 @@ public:
 private:
     Ui::MainWindow *ui;
     ChessView *m_view;
-    DersAlgorithm *m_algorithm;
+    MinimaxAlgorithm *m_algorithm;
     QPoint m_clickPoint;
     ChessView::FieldHighlight *m_selectedField;
     AnalyzeWindow *wndAnalyze;

@@ -9,7 +9,6 @@
 class ChessAlgorithm : public QObject
 {
     Q_OBJECT
-    Q_ENUMS(Result Player)
     Q_PROPERTY(Result result READ result)
     Q_PROPERTY(Player currentPlayer
                READ currentPlayer
@@ -17,6 +16,8 @@ class ChessAlgorithm : public QObject
 public:
     enum Result { NoResult, Player1Wins, Draw, Player2Wins };
     enum Player { NoPlayer, Player1, Player2 };
+    Q_ENUM(Result)
+    Q_ENUM(Player)
     enum Color { White, Black};
 
     explicit ChessAlgorithm(QObject *parent = nullptr);

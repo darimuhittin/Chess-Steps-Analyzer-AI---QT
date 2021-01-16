@@ -18,7 +18,7 @@ AnalyzeWindow::AnalyzeWindow(QWidget *parent) : QWidget(parent)
 
 void AnalyzeWindow::updateNodes(QList<AnalyzerNode> nodes)
 {
-    analyze->setNodes(nodes);
+    analyze->setupNodes(nodes);
     //view->fitInView(analyze->rect(),Qt::KeepAspectRatio);
 }
 

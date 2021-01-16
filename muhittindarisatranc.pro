@@ -15,9 +15,9 @@ SOURCES += \
     chessalgorithm.cpp \
     chessboard.cpp \
     chessview.cpp \
-    dersalgorithm.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    minimaxalgorithm.cpp
 
 HEADERS += \
     analyzernode.h \
@@ -26,8 +26,8 @@ HEADERS += \
     chessalgorithm.h \
     chessboard.h \
     chessview.h \
-    dersalgorithm.h \
-    mainwindow.h
+    mainwindow.h \
+    minimaxalgorithm.h
 
 FORMS += \
     mainwindow.ui
