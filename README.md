@@ -1,6 +1,10 @@
 ### Yapay Sinir Ağları Dersi Dönem Ödevi için hazırlanmıştır. :neckbeard:
 
-Minimax ve Alpha-Beta budama kullanan satranç. Tahta 6x6 boyutundadır. 
+Minimax algoritması ve Alpha-Beta budama tekniği kullanan satranç uygulamasıdır.
+
+QtFramework kullanılmıştır.
+
+Tahta 6x6 boyutundadır. 
 
 Yalnızca :
 - Piyon  :point_left:
@@ -8,4 +12,5 @@ Yalnızca :
 - Kale  :point_left:
 
 taşları kullanılmaktadır. :unamused:
-#### Yardimci olmasi amaci ile, minimax algoritmasi icin yararlandigim videoya [BURADAN](https://www.youtube.com/watch?v=l-hh51ncgDI) ulasabilirsiniz. :yum:
+#### Yardimci olmasi amaci ile, minimax algoritmasi 
+#### icin yararlandığım videoya [BURADAN](https://www.youtube.com/watch?v=l-hh51ncgDI) ulaşabilirsiniz. :yum:
